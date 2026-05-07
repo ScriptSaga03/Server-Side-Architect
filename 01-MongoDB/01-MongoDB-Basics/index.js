@@ -1,37 +1,21 @@
-//  Start Mongo shell (once MongoDB installed)
-mongosh
+// Basic mongo shell commands 
 
-// Show all databases
+// start mongo shell
+mongosh;
 
-// method one
- show dbs;
-// method two
-// show databases;
 
-// create or switch databases
+// show all databases
+show dbs;
+// or 
+show databases;
+
+
+// switch or create databases;
 use myDatabase;
 
-// If you want to check that your database created or not
-show dbs;
-
-
-// show all collection in current DB
-show collections;
-
 // create collections
-db.createCollection('students');
+db.createCollection('collectionName');
 
+// show all collections in current database
 show collections;
-
-// drop collection
-db.students.drop();
-
-show collections
-
-// # Drop database
-
-db.dropDatabase();
-
-show dbs;
-
 
