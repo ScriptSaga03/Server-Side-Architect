@@ -19,7 +19,16 @@ show dbs;
 show collections
 
 // create collection 
+// there are two ways to create a collection 
+// method 1 
+// you can create collection using the createCollection() database method
 db.createCollection('students');
+
+// method 2
+// you can also create a collection during the insert process
+db.students.insertOne(
+    {name:'mehtab', age:24, course:'MERN Stack'}
+);
 show collections;
 
 // rename collection
