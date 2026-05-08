@@ -47,6 +47,18 @@ This journey is divided into four strategic phases to ensure a deep understandin
 
 ---
 
+| Day | Challenge / Problem Title | Concept Used | Code Link | Status |
+| :---: | :--- | :--- | :---: | :---: |
+| **Day 1** | Flatten nested arrays without `.flat()` | Nested Loops & Recursion | [View Code](./day1-flatten.js) | Done ✅ |
+| **Day 2** | Custom String Reversal (No `.reverse()`) | Two-pointer approach / Loops | [View Code](./day2-reverse.js) | Done ✅ |
+| **Day 3** | Find duplicate elements in an array | Hash Maps / Objects | [View Code](./day3-duplicates.js) | In Progress 🔄 |
+| **Day 4** | Challenge Name | Concept | [Link]() | Pending ⏳ |
+
+## **I'll change it after sometime
+
+*(Note: I will update this table daily as I progress through my 300-day challenge!)*
+
+
 ### 📂 **System Architecture**
 ```text
 ├── 📂 src
@@ -58,6 +70,7 @@ This journey is divided into four strategic phases to ensure a deep understandin
 │   └── 📄 app.js        # Main application entry point
 └── 📄 .env.example      # Template for environment variables
 
+
 ---
 
 ### 💡 **Philosophy**
@@ -67,5 +80,8 @@ This journey is divided into four strategic phases to ensure a deep understandin
 
 ### 🤝 **Let's Connect**
 If you find these logic implementations helpful, feel free to **Star ⭐** this repository!
+
+
+
 
 
