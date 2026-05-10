@@ -1,6 +1,20 @@
 // Module 4 - MongoDB Lab Practice
 // Goal: Mastery over CRUD, Field Renaming, and Unset Operators
 
+/* Problems  
+🔬 Labs (Independent Practice)
+Create storeDB → collection products
+Insert 5 products (fields: name, price, stock, category)
+Find all products in category “electronics”
+Increase stock of all products by 10
+Reduce price by 5% for products priced above 500
+Delete all products with stock 0
+Rename category → type
+Unset field tempDiscount if it exists
+*/
+
+
+
 // Step 1: Database Setup
 show dbs;
 use storeDB;
