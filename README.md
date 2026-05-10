@@ -47,17 +47,18 @@ This journey is divided into four strategic phases to ensure a deep understandin
 
 ---
 
-| Day | Challenge / Problem Title | Concept Used | Code Link | Status |
+### 📅  Live Progress Tracker**
+
+| Day | Challenge / Problem Title | Core Concept / Operators Used | Code Link | Status |
 | :---: | :--- | :--- | :---: | :---: |
-| **Day 1** | Flatten nested arrays without `.flat()` | Nested Loops & Recursion | [View Code](./day1-flatten.js) | Done ✅ |
-| **Day 2** | Custom String Reversal (No `.reverse()`) | Two-pointer approach / Loops | [View Code](./day2-reverse.js) | Done ✅ |
-| **Day 3** | Find duplicate elements in an array | Hash Maps / Objects | [View Code](./day3-duplicates.js) | In Progress 🔄 |
-| **Day 4** | Challenge Name | Concept | [Link]() | Pending ⏳ |
+| **Day 1** | **Mongo Shell Basics** | Database & Collection initialization, dropping databases | [View Code](./Mongo-Basics.js) | Done ✅ |
+| **Day 2** | **Database & Collection Lifecycle** | Lazy Loading, renaming collections, dynamic creation | [View Code](./Database-Collection-Lifecycle.js) | Done ✅ |
+| **Day 3** | **Document Manipulation & BSON CRUD** | `insertOne()`, `insertMany()`, `deleteOne()`, `deleteMany()` | [View Code](./Document-BSON-CRUD.js) | Done ✅ |
+| **Day 4** | **Query, Math, Schema & Array Operators** | `$set`, `$inc`, `$mul`, `$rename`, `$unset`, `$push`, `$addToSet`, `$pull`, `$each`, `returnDocument` | [View Code](./Query-Array-Operators.js) | Done ✅ |
+| **Day 5** | **Node.js Core Architecture** | Event Loop, Thread Pool, `http` module, custom Content-Types | [View Code](./Day5-Node-Server.js) | Done ✅ |
+| **Day 6** | **Express.js API Router Setup** | Express initialization, Route Handlers, OOP Controllers | [Pending](./Day6-Express-Router.js) | In Progress 🔄 |
 
-## **I'll change it after sometime
-
-*(Note: I will update this table daily as I progress through my 300-day challenge!)*
-
+*(Note: I am updating this tracker daily as I move from a self-taught enthusiast to a Production-Ready Backend Engineer!)*
 
 ### 📂 **System Architecture**
 ```text
