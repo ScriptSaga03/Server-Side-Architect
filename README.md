@@ -55,8 +55,6 @@ This journey is divided into four strategic phases to ensure a deep understandin
 | **Day 2** | **Database & Collection Lifecycle** | Lazy Loading, renaming collections, dynamic creation | [View Code](./Database-Collection-Lifecycle.js) | Done ✅ |
 | **Day 3** | **Document Manipulation & BSON CRUD** | `insertOne()`, `insertMany()`, `deleteOne()`, `deleteMany()` | [View Code](./Document-BSON-CRUD.js) | Done ✅ |
 | **Day 4** | **Query, Math, Schema & Array Operators** | `$set`, `$inc`, `$mul`, `$rename`, `$unset`, `$push`, `$addToSet`, `$pull`, `$each`, `returnDocument` | [View Code](./Query-Array-Operators.js) | Done ✅ |
-| **Day 5** | **Node.js Core Architecture** | Event Loop, Thread Pool, `http` module, custom Content-Types | [View Code](./Day5-Node-Server.js) | Done ✅ |
-| **Day 6** | **Express.js API Router Setup** | Express initialization, Route Handlers, OOP Controllers | [Pending](./Day6-Express-Router.js) | In Progress 🔄 |
 
 *(Note: I am updating this tracker daily as I move from a self-taught enthusiast to a Production-Ready Backend Engineer!)*
 
