@@ -1,5 +1,5 @@
 // Array Operations
-
+// Lab 2
 
 // Step 1: Check existing databases
 show dbs;
