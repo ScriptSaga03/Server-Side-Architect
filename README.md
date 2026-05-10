@@ -54,7 +54,7 @@ This journey is divided into four strategic phases to ensure a deep understandin
 | **Day 1** | **Mongo Shell Basics** | Database & Collection initialization, dropping databases | [View Code](https://github.com/ScriptSaga03/Server-Side-Architect/blob/main/01-MongoDB/01-MongoDB-Basics) | Done ✅ |
 | **Day 2** | **Database & Collection Lifecycle** | Lazy Loading, renaming collections, dynamic creation | [View Code](https://github.com/ScriptSaga03/Server-Side-Architect/tree/main/01-MongoDB/02-Databases%26Collections) | Done ✅ |
 | **Day 3** | **Document Manipulation & BSON CRUD** | `insertOne()`, `insertMany()`, `deleteOne()`, `deleteMany()` | [View Code](https://github.com/ScriptSaga03/Server-Side-Architect/tree/main/01-MongoDB/03-Document%26BSON) | Done ✅ |
-| **Day 4** | **Query, Math, Schema & Array Operators** | `$set`, `$inc`, `$mul`, `$rename`, `$unset`, `$push`, `$addToSet`, `$pull`, `$each`, `returnDocument` | [View Code](./Query-Array-Operators.js) | Done ✅ |
+| **Day 4** | **Query, Math, Schema & Array Operators** | `$set`, `$inc`, `$mul`, `$rename`, `$unset`, `$push`, `$addToSet`, `$pull`, `$each`, `returnDocument` | [View Code](https://github.com/ScriptSaga03/Server-Side-Architect/tree/main/01-MongoDB/04-Update%26Query-Operations) | Done ✅ |
 
 *(Note: I am updating this tracker daily as I move from a self-taught enthusiast to a Production-Ready Backend Engineer!)*
 
