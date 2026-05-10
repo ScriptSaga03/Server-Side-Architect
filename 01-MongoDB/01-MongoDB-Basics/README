@@ -1,0 +1,49 @@
+# Module 01: MongoDB Basics & Shell Commands
+
+This module covers the absolute basics of database engineering and interacting with MongoDB using the interactive JavaScript shell (`mongosh`).
+
+---
+
+### 💡 **Core Concepts**
+* **Database:** A container that holds collections of data.
+* **Collection:** A grouping of MongoDB documents (similar to a table in SQL).
+* **Document:** A record in a MongoDB collection, stored in BSON (Binary JSON) format.
+
+---
+
+### 🛠️ **Core Commands Reference**
+
+| Command | Description |
+| :--- | :--- |
+| `mongosh` | Starts the MongoDB shell in your terminal |
+| `show dbs` / `show databases` | Lists all databases on the current server |
+| `use <db_name>` | Switches to a database (or creates it if it does not exist) |
+| `db.createCollection('<name>')` | Explicitly creates a new collection in the current database |
+| `show collections` | Lists all collections in the active database |
+| `db.dropDatabase()` | Deletes the current active database |
+
+---
+
+### 🔬 **Lab Implementation: `storeDB` Setup**
+
+In this lab, we created and tested a basic database lifecycle:
+
+```javascript
+// Step 1: Switch to a new database
+use storeDB;
+
+// Step 2: Create two collections
+db.createCollection('products');
+db.createCollection('customers');
+
+// Step 3: Verify that the collections were created
+show collections;
+
+// Step 4: Drop the 'customers' collection safely
+db.customers.drop();
+
+// Step 5: Verify remaining databases
+show dbs;
+
+// Step 6: Clean up by dropping the database
+db.dropDatabase();
