@@ -52,7 +52,6 @@ db.products.insertMany([
 // Step 6: Verify all data using Projection (Hiding auto-generated _id)
 db.products.find({}, { name: 1, category: 1, stock: 1, price: 1, _id: 0 }).pretty();
 
-
 // Explanation: Agar string me quote ho, toh bahar Backticks (`) ya Double Quotes (") use karo.
 db.products.find({ category: `Women's Clothing` }, { name: 1, category: 1, _id: 0 }).pretty();
 
@@ -136,3 +135,31 @@ db.products.updateOne(
 
 // Step 2: Final document state check
 db.products.findOne({ name: "Oversized Graphic Tee" });
+
+
+
+/*
+
+🧠 What We Learned in This Lab (Theory & Best Practices)
+1. $set vs $rename
+$set: Iska use tab hota hai jab document ke andar ki Value change karni ho (e.g., password badalna).
+
+$rename: Iska use tab hota hai jab database ka Key/Field badalna ho (e.g., database schema restructuring).
+
+2. findOneAndUpdate & returnDocument: 'after'
+By default, findOneAndUpdate console par old document print karta hai update hone se pehle ka.
+
+{ returnDocument: 'after' } option pass karne se console par turant updated fresh document mil jata hai, jiski wajah se extra .find() query nahi chalani padti. Node.js Mongoose ke andar iske liye { new: true } ka use kiya jata hai.
+
+3. $push vs $addToSet
+$push: Array ke end mein naya data directly add kar deta hai (Yeh duplicates check nahi karta).
+
+$addToSet: Array ko ek Set ki tarah treat karta hai aur element tabhi push karta hai jab wo list mein pehle se present na ho.
+
+4. The Power of $each
+Agar bina $each ke array as parameter pass karoge: ["XXL", "3XL"] -> toh ["S", "M", ["XXL", "3XL"]] ban jayega (Array inside Array).
+
+Jab hum $each use karte hain, toh array ke elements de-structure ho kar flat single elements ki tarah parent array mein add hote hain: ["S", "M", "XXL", "3XL"].
+
+
+/*
