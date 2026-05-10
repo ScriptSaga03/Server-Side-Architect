@@ -32,3 +32,14 @@ db.collection.updateOne({ name: "Alice" }, { $unset: { tempField: "" } })
 
 // Find & Project Specific Fields
 db.collection.find({ age: { $gt: 18 } }, { name: 1, age: 1, _id: 0 })
+
+
+// Step 5 — Delete Operations
+
+// Delete one inactive employee
+db.employees.deleteOne({active:false});
+
+// Delete all employees younger than 30
+db.employees.deleteMany({age: {$gt: 30}});
+
+db.employees.find().pretty();
