@@ -1,3 +1,5 @@
+// -------------- Mini Project ------------------
+
 // create a db inventoryDB
 use inventoryDB;
 
