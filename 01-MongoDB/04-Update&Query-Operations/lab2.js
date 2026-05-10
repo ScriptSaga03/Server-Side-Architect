@@ -162,4 +162,4 @@ Agar bina $each ke array as parameter pass karoge: ["XXL", "3XL"] -> toh ["S", "
 Jab hum $each use karte hain, toh array ke elements de-structure ho kar flat single elements ki tarah parent array mein add hote hain: ["S", "M", "XXL", "3XL"].
 
 
-/*
+*/
