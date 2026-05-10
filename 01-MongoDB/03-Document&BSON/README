@@ -1,0 +1,54 @@
+---
+
+### 📂 3. Module 03: Document Manipulation & BSON CRUD (`README.md`)
+
+```markdown
+# Module 03: Document Manipulation & BSON CRUD
+
+In this module, we transition from database structures to working with actual data: inserting, retrieving, and deleting documents.
+
+---
+
+### 💡 **Theory: JSON vs BSON**
+* **JSON (JavaScript Object Notation):** A human-readable text format. It is easy to write but slow for computers to parse.
+* **BSON (Binary JSON):** MongoDB stores data in this binary format. It supports more data types (like `ObjectId`, `Date`, and integers) and makes database queries incredibly fast.
+
+---
+
+### 🛠️ **CRUD Operations Reference**
+
+* **Insert One Document:**
+  ```javascript
+  db.product.insertOne({ name: 'HP laptop', price: 14000, category: 'electronic' });
+Insert Many Documents (Bulk Input):
+
+JavaScript
+db.product.insertMany([
+    { name: 'baggy jean', price: 1599, category: 'cloth' },
+    { name: 't-shirt', price: 799, category: 'cloth' }
+]);
+Fetch Data:
+
+db.books.find() — Retrieves all documents from the collection.
+
+db.books.findOne() — Retrieves only the first matching document.
+
+Delete Documents:
+
+db.books.deleteOne({ title: 'Clean Code' }) — Deletes a single matching document.
+
+db.books.deleteMany({}) — Deletes all documents, clearing the collection completely.
+
+🔬 Lab: Library Management System
+Created database libraryDB and collection books.
+
+Bulk inserted 3 books and performed projection checks.
+
+Inserted 2 more books individually using insertOne().
+
+Found and verified records before deleting specific documents.
+
+🧠 Best Practices & Takeaways
+Use Bulk Inserts Over Loops: For inserting multiple items, always use insertMany() instead of calling insertOne() in a loop. It reduces network requests and speeds up database performance.
+
+Safe Deletions: Always run a find() query with your filter first before executing deleteOne() or deleteMany() to ensure you are deleting the correct documents.
