@@ -1,0 +1,54 @@
+---
+
+### 📂 2. Module 02: Database & Collection Lifecycle (`README.md`)
+
+```markdown
+# Module 02: Database & Collection Lifecycle
+
+This module covers collection management, explicit vs. implicit creation, renaming collections, and structuring schemas for real-world scenarios.
+
+---
+
+### 💡 **Key Concepts**
+* **Explicit Creation:** Using `db.createCollection()` to declare a collection before adding data.
+* **Implicit Creation:** Directly inserting a document into a non-existent collection, which forces MongoDB to create it automatically.
+* **Schema Refactoring:** Changing collection names safely without losing any underlying data.
+
+---
+
+### 🛠️ **Syntax & Methods**
+
+```javascript
+// Method 1: Explicit Creation
+db.createCollection('students');
+
+// Method 2: Implicit Creation (Collection is created on data insertion)
+db.students.insertOne({ name: "Mehtab", age: 24, course: "MERN Stack" });
+
+// Rename a collection safely
+db.students.renameCollection('student');
+
+// Drop a collection
+db.student.drop();
+🏢 Mini Projects & Labs Covered
+1. Company Database Setup:
+Created database companyDB.
+
+Created collections: employees, department, products.
+
+Dropped products collection and verified the active collections.
+
+Cleaned up by dropping the database.
+
+2. Blog Database (blogDB):
+Created posts and comments collections.
+
+Checked database isolation by switching between databases.
+
+3. Inventory Management System (inventoryDB):
+Created collections: products, suppliers, and sales.
+
+Dropped and recreated the sales collection to simulate a schema reset.
+
+🧠 Best Practices & Takeaways
+Never Drop & Recreate to Rename: If you need to rename a collection in production, always use renameCollection(). Dropping and recreating will delete all existing records and indexes, leading to permanent data loss.
