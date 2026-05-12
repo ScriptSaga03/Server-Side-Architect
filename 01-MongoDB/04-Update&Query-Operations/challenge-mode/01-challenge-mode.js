@@ -152,3 +152,30 @@ $rename: Pura ka pura column/field name change kar deta hai bina values ko touch
 
 
 
+// ⚡ Delete Tasks & Production Solutions
+// Task 1: Delete one employee whose name is “Bob”
+// Method 1: Standard Deletion (Recommended when response payload isn't needed)
+db.employees.deleteOne({ name: "Bob" });
+
+// Method 2: Delete and fetch the deleted document state (Using 'before' to see what was deleted)
+db.employees.findOneAndDelete({ name: "Bob" }, { returnDocument: "before" });
+
+// Step 2: Verification check (Should return empty/no output)
+db.employees.find({ name: "Bob" });
+
+
+
+// Task 2: Delete all inactive employees
+// Step 1: Check how many inactive employees exist before deletion
+db.employees.find({ active: false }).pretty();
+
+// Step 2: Perform bulk delete
+db.employees.deleteMany({ active: false });
+
+// Step 3: Re-verify to ensure the operation was successful
+db.employees.find({ active: false });
+
+
+
+
+
