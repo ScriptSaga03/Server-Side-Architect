@@ -149,3 +149,20 @@ $unset: Kisi field ko value ke sath hi schema se delete kar deta hai. Field ko e
 
 $rename: Pura ka pura column/field name change kar deta hai bina values ko touch kiye.
 */
+
+
+// Advanced Quireas
+// Task 2: Find the highest-paid employee under 35 years old
+db.employees.find(
+    { age: { $lt: 35 } } // Filter: Age under 35
+)
+.sort({ salary: -1 })    // Sort: Salary High to Low (-1 means Descending)
+.limit(1);               // Limit: Pick only the top 1 highest-paid person
+
+
+// Task 3: List all employees sorted by age descending, showing only name and age
+db.employees.find(
+    {},                           // Empty filter means select ALL employees
+    { name: 1, age: 1, _id: 0 }   // Projection: Show only name and age, hide _id
+)
+.sort({ age: -1 });               // Sort: Age Descending (Oldest to Youngest)
