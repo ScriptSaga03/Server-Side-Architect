@@ -177,5 +177,29 @@ db.employees.find({ active: false });
 
 
 
+// ⚡ Advanced Tasks & Production Solutions
+// Task 2: Find the highest-paid employee under 35 years old
+db.employees.find(
+    { age: { $lt: 35 } } // Filter: Age under 35
+)
+.sort({ salary: -1 })    // Sort: Salary High to Low (-1 means Descending)
+.limit(1);               // Limit: Pick only the top 1 highest-paid person
+
+
+// Task 3: List all employees sorted by age descending, showing only name and age
+db.employees.find(
+    {},                           // Empty filter means select ALL employees
+    { name: 1, age: 1, _id: 0 }   // Projection: Show only name and age, hide _id
+)
+.sort({ age: -1 });
+
+
+/*
+sort({ field: 1 / -1 }): Database level par sorting karne ke liye. 1 ka matlab hai Ascending (A to Z, 1 to 10) aur -1 ka matlab hai Descending (Z to A, 10 to 1).
+
+limit(n): Yeh query response ke total documents ko restrict kar deta hai. Agar limit(5) likha hai, toh database sirf pehle 5 documents hi return karega, jo pagination mein bohot kaam aata hai.
+*/
+
+
 
 
