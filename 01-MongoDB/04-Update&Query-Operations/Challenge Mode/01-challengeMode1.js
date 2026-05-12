@@ -96,3 +96,56 @@ $and: Explicitly required only when you need to join multiple expressions on the
 
 $options: 'i' (Case-Insensitive flag): Forces the database query to match both upper-case and lower-case variants (e.g., matching both Alice and alice).
 */
+
+
+
+// ⚡ Update Tasks & Production Solutions
+// Task 1: Increase salary of all Developers by 10%
+  // Formula: Current Salary * 1.10 = 10% Increase
+db.employees.updateMany(
+    { role: 'Developer' }, 
+    { $mul: { salary: 1.10 } }
+);
+// Task 2: Set active: true for all inactive employees younger than 40
+// Step 1: Verify matching records before updating
+db.employees.find({ active: false, age: { $lt: 40 } }, { _id: 0 }).pretty();
+
+// Step 2: Execute bulk update
+db.employees.updateMany(
+    { active: false, age: { $lt: 40 } }, 
+    { $set: { active: true } }
+);
+
+// Step 3: Re-verify to ensure no matching records remain inactive
+db.employees.find({ active: false, age: { $lt: 40 } }, { _id: 0 }).pretty();
+
+
+// Task 3: Increment age by 1 for employees earning more than 50,000
+db.employees.updateMany(
+    { salary: { $gt: 50000 } }, 
+    { $inc: { age: 1 } }
+);
+
+// Task 4: Remove the salary field from employees who are inactive
+db.employees.updateMany(
+    { active: false }, 
+    { $unset: { salary: "" } }
+);
+
+// Task 5: Rename the field role → position for everyone
+db.employees.updateMany(
+    {}, 
+    { $rename: { 'role': 'position' } }
+);
+/*
+🧠 Core Operator Definitions (For your Git Notes)
+$set: Field ki value ko badalta hai. Agar field document mein nahi hai, toh yeh naya field create kar deta hai.
+
+$inc: Kisi number field ko plus ya minus karne ke liye use hota hai. (e.g., { $inc: { age: -1 } } karne se age ek saal kam ho jayegi).
+
+$mul: Database level par direct multiplication karta hai. Percentage calculations ya currency updates ke liye best operator hai.
+
+$unset: Kisi field ko value ke sath hi schema se delete kar deta hai. Field ko empty string "" pass karke execute kiya jata hai.
+
+$rename: Pura ka pura column/field name change kar deta hai bina values ko touch kiye.
+*/
