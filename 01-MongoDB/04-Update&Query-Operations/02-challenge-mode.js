@@ -86,3 +86,59 @@ db.employees.find({
     active:false,
     skills: "Leadership"
 },{_id:0}).pretty();
+
+
+
+
+//***************************************************************************************************************************************************************
+
+// Updates on Nested/Array Fields
+
+
+// Add "TypeScript" to John’s skills array.
+// 1. John ke skills array mein "TypeScript" add karne ke liye
+// db.employees.updateOne(
+//     { name: 'John' },
+//     { $push: { skills: "TypeScript" } } 
+// );
+// // 2. Data check karne ke liye
+// db.employees.findOne({ name: 'John' });
+
+db.employees.findOneAndUpdate({name:'John'}, {$addToSet: {skills: "TypeScript"}}, {returnDocument:'after'});
+
+
+
+// Update the status of App2 project to "completed" for John.
+
+
+/*
+db.employees.updateOne(
+    { name: 'John', "projects.name": "App2" }, // 1. Pehle John aur uske sahi project ko dhoondho
+    { $set: { "projects.$.status": "completed" } } // 2. $ operator ka use karke status badlo
+);
+
+
+// Check karne ke liye
+db.employees.findOne({ name: 'John' });
+
+
+ Filter Part ({ name: 'John', "projects.name": "App2" }):
+Database sabse pehle John ke document mein jayega. Fir wo uske projects array ke andar check karega ki "App2" kaunse number (index) par betha hai. Humare data mein App2 dusre number yaani index 1 par hai.
+
+Update Part ({ $set: { "projects.$.status": "completed" } }):
+Yahan tumne jo beech mein $ lagaya hai na, use kehte hain Positional Operator. Iska kaam hota hai pehle wale filter se match huye element ka exact index pakadna. Database dimaag mein is $ ko hata kar wahan chupke se use index ka number daal deta hai, yaani wo ise internally "projects.1.status" bana deta hai.
+*/
+
+db.employees.findOneAndUpdate(
+    {name:'John', "projects.name":"App2"},
+    {$set: {'projects.$.status': 'completed'}},
+    {returnDocument:'after'}
+);
+// Remove "React" from Sara’s skills array.
+db.employees.find({name:"Sara"}, {_id:0, name:1, skills:1}).pretty();
+
+db.employees.findOneAndUpdate(
+    {name:'Sara'},
+    {$pull: {skills: 'React'}},
+    {returnDocument:"after"}
+)
