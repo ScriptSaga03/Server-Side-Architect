@@ -142,3 +142,16 @@ db.employees.findOneAndUpdate(
     {$pull: {skills: 'React'}},
     {returnDocument:"after"}
 )
+
+
+// ************************************************************************************************************************************************************
+// Advanced Deletes & Projections
+
+// Delete employees who have no ongoing projects.
+db.employees.deleteMany({"projects.status": {$nin: ["ongoing"]}});
+
+// Show only name and project names (not status) for all employees.
+db.employees.find({}, {_id:0, name: 1, "projects.name": 1})
+
+// Count employees who have more than one skill.
+db.employees.countDocuments({$expr: {$gt: [{$size: "$skills"}, 1]}},{_id:0, name:1, skills:1});
