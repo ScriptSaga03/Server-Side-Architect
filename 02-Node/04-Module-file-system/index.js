@@ -2,8 +2,11 @@
 import {writeData, readData} from './fileOperations.js'
 
 async function main(){
-  await writeData();
+   await writeData();
+  await appendData();
   await readData();
+
+  await deleteFile();
 }
 
 main();
