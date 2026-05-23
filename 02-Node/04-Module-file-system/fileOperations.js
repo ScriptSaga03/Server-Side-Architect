@@ -26,3 +26,28 @@ export const readData = async()=>{
       console.log("❌ Error: during reading file: ",err.message)
     }
 }
+
+
+
+// Append file
+export const appendData = async () => {
+  try {
+    const additionalContent =
+      "\n\n ⏰ Last Updated: " + new Date().toLocaleTimeString();
+    await fs.appendFile("database.txt", additionalContent);
+    console.log('➕ Data appended successfully.');
+  } catch (err) {
+    console.error("❌ Error during appending: ", err.message);
+  }
+};
+
+
+// Delete Files
+export const deleteFile = async () => {
+    try {
+        await fs.unlink('database.txt');
+        console.log('🗑️ File deleted successfully from disk.');
+    } catch (err) {
+        console.error("❌ Error during deletion: ", err.message);
+    }
+}
