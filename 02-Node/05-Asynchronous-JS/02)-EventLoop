@@ -1,0 +1,12 @@
+🔄 Event Loop Aur Callbacks Kya Hain?
+JavaScript ke paas sirf Ek hi haath hai (Single-threaded). Wo ek waat mein ek hi line execute kar sakta hai, jise hum Call Stack kehte hain.
+
+Toh jab setTimeout ya fs.readFile jaise background kaam aate hain, toh JavaScript unhe khud nahi karta. Wo unhe Node.js ke background APIs ko saump deta hai aur khud aage badh jaata hai.
+
+Lekin jab background mein kaam poora ho jaata hai, toh wo code wapas chalne ke liye line mein lagta hai. Is poore chakkar ko chalane ke liye 3 cheezein kaam karti hain:
+
+Call Stack (Main Stage): Yahan tumhara normal code line-by-line chalta hai.
+
+Callback Queue (Waiting Area): Jab background task (jaise 3 second ka timer) poora ho jaata hai, toh uske andar ka function (callback) is waiting area mein aakar khada ho jaata hai.
+
+Event Loop (The Manager): Iska sirf ek hi kaam hai—ye lagatar Call Stack aur Callback Queue ko dekhta rehta hai. Jaise hi Main Stage (Call Stack) khali hota hai, ye Waiting Area se pehle function ko uthakar Main Stage par bhej deta hai execution ke liye.
