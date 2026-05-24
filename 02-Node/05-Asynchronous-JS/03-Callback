@@ -1,0 +1,23 @@
+💻 Callback Function Kya Hota Hai? (Aasan Code)
+Callback aur kuch nahi, bas ek aisa function hota hai jise hum doosre function ke andar as an argument (parameter) pass karte hain, taaki jab background ka kaam khatam ho, toh wo function run ho sake.
+
+Chalo bina kisi background timer ke, ekdam basic custom callback function banakar dekhte hain:
+
+JavaScript
+// 1. Ek simple function jo callback accept karta hai
+function welcomeUser(username, callback) {
+    console.log(`\n1. Welcome process shuru hua ${username} ke liye...`);
+    
+    // Yahan humne callback function ko call (execute) kar diya
+    callback(); 
+}
+
+// 2. Ek aur function jo hum baad mein chalana chahte hain
+function logStatus() {
+    console.log("2. Status: User successfully logged into system! 🚀");
+}
+
+// 3. Execution: Humne logStatus ko bina () ke as a parameter pass kiya
+welcomeUser("Mehtab", logStatus);
+🧠 Yahan Kya Hua?
+Tumne welcomeUser ko chalaya aur use bataya ki "Bhai, apna kaam karne ke baad logStatus ko chala dena". JavaScript ne pehle welcome wali line print ki, aur fir tumhare diye gaye callback (logStatus) ko execute kar diya.
