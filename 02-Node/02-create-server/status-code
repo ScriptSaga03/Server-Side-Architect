@@ -1,0 +1,9 @@
+Common Status Codes
+Code	Meaning	Kab use hota
+200	OK	Success
+201	Created	Resource create hua
+400	Bad Request	User ne galat data bheja
+401	Unauthorized	Login required
+403	Forbidden	Permission nahi
+404	Not Found	Route/resource nahi mila
+500	Internal Server Error	Server side crash
