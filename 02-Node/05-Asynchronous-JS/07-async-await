@@ -1,0 +1,55 @@
+Ab hum baat karenge Async/Await ki. Yeh koi nayi cheez nahi hai, bas Promises ko likhne aur padhne ka ek behad aasan aur saaf-suthra tarika hai.
+
+🎭 Async/Await: Promises Par Ek Naya Parda (Syntactic Sugar)
+JavaScript developers jab .then() aur .catch() se thoda pareshan ho gaye, toh unhone socha ki kaash hum asynchronous code ko bhi bilkul normal synchronous code ki tarah upar se niche ek line mein padh paate.
+
+Isi cheez ko sach karne ke liye do keywords aaye:
+
+async: Yeh keyword kisi bhi function ke aage lagta hai. Iska matlab hota hai: "Yeh function ab ek normal function nahi hai, iske andar asynchronous kaam hone wale hain aur yeh hamesha ek Promise return karega."
+
+await: Yeh keyword sirf async function ke andar hi use ho sakta hai. Iska matlab hota hai: "Bhai JavaScript, jab tak yeh samne wala Promise resolve ya reject nahi ho jata, tab tak is line par ruko. Jaise hi data aa jaye, tabhi agli line par badhna."
+
+💻 Code Se Samjho: Chain vs Async/Await
+Yaad hai pichla Promise jo database se user ka data nikaal raha tha? Chalo dekhte hain ki .then() ke muqable async/await mein wo kitna saaf dikhta hai.
+
+🛑 Purana Tarika (.then() chain):
+JavaScript
+checkUserInDB("USER_101")
+  .then((userData) => {
+    console.log("Data mila:", userData);
+    return getFilters(userData);
+  })
+  .then((filteredData) => {
+    console.log("Filtered:", filteredData);
+  })
+  .catch((err) => console.log(err));
+🚀 Naya Tarika (async/await):
+JavaScript
+// 1. Function ke aage 'async' lagaya
+async function handleUserFlow() {
+  try {
+    console.log("Process shuru...");
+
+    // 2. '.then()' ki jagah 'await' lagakar data ko seedhe variable mein le liya
+    const userData = await checkUserInDB("USER_101"); 
+    console.log("Data mila:", userData);
+
+    const filteredData = await getFilters(userData);
+    console.log("Filtered:", filteredData);
+
+  } catch (error) {
+    // 3. '.catch()' ki jagah normal try/catch block use hota hai error sambhalne ke liye
+    console.log("Kuch gadbad hui:", error);
+  }
+}
+
+// Function chalaya
+handleUserFlow();
+🧠 Sabse Important Baat: Kya await Server Ko Block Karta Hai?
+Yeh interview ka bohot bada sawaal hai aur aksar log yahan galti karte hain.
+
+Jab tum const userData = await checkUserInDB() likhte ho, toh lagta hai ki JavaScript wahan ruk gaya (freeze ho gaya). Lekin aisa nahi hota!
+
+JavaScript ka engine sirf us async function ke andar ke code ko rokta hai.
+
+Us function ke baahar agar koi aur kaam chal raha hai (jaise kisi doosre user ka request aaya hai), toh Node.js use handle karta rahega. Wo poore server ko block nahi karta.
