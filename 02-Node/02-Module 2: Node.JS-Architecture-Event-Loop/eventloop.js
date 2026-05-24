@@ -1,7 +1,7 @@
 
 /*
 
-ehle ek sach jaan lo: JavaScript Single-Threaded hai.
+Pehle ek sach jaan lo: JavaScript Single-Threaded hai.
 
 💡 Thread kya hota hai? Ek thread ka matlab hai ek single rasta ya ek akela worker jo ek baar mein sirf ek hi kaam kar sakta hai. Agar ek kaam chal raha hai, toh dusra kaam line mein khada rahega (ise sync ya blocking kehte hain).
 
