@@ -1,0 +1,33 @@
+Callback Hell: Asli Problem
+Abhi tak sab badhiya lag raha hai na? Lekin real-world backend mein jab ek ke baad ek asynchronous kaam karne padte hain, toh callbacks dushmani par utar aate hain.
+
+Maan lo tumhein ek user ka order process karna hai:
+
+Pehle user check karo (Database query - Async)
+
+Fir uske items ka stock check karo (Async)
+
+Fir payment process karo (Async)
+
+Fir email bhejo (Async)
+
+Agar ye sab callbacks se karoge, toh code aisa dikhega:
+
+/*
+JavaScript
+checkUser(userId, function(user) {
+    checkStock(user.cart, function(stock) {
+        processPayment(user.total, function(paymentStatus) {
+            sendEmail(user.email, function() {
+                console.log("Sab khatam!");
+                // ❌ Is arrow jaise structure ko kehte hain CALLBACK HELL ya Pyramid of Doom!
+            });
+        });
+    });
+});
+
+*/
+Yeh code padhne mein aur debug karne mein narak (hell) ban jaata hai, isiliye isko Callback Hell kehte hain.
+
+🎯 Agla Target
+Is Callback Hell se bachne ke liye hi JavaScript mein Promises aur Async/Await ka janam hua tha, jo tumne file system mein use kiya tha!
