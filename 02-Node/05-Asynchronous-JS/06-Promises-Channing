@@ -1,0 +1,11 @@
+🔗 Promise Chaining (Callback Hell Ka Khatma)
+Yaad hai pichli baar humne nested callbacks ka narak dekha tha? Promises use aise seedhe raste par le aata hai:
+
+JavaScript
+// Isko bolte hain Promise Chaining
+checkUser(userId)
+  .then(user => checkStock(user.cart))      // Ek ke baad ek .then jodte jao
+  .then(stock => processPayment(stock))
+  .then(payment => sendEmail(payment))
+  .catch(err => console.log("Poore process mein kahin bhi error aayi toh main sambhal lunga!", err));
+Ab code nesting ke bajaye upar se niche ek clean line mein padha jaa sakta hai.
