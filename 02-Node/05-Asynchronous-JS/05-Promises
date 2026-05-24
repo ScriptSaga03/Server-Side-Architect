@@ -1,0 +1,42 @@
+Level 3 par: Promises (The Savior).🤝
+Promise Kya Hota Hai? (Asli Matlab)Real life ki tarah, 
+JavaScript mein bhi Promise ka matlab ek vaada hi hai.Maan lo tumne Swiggy se khana order kiya. 
+Jaise hi tum order karte ho, Swiggy tumhein ek Promise de deta hai ki tumhara khana aayega.Jab tak khana ban raha hai aur delivery boy raste mein hai,
+us Promise ka status hota hai: Pending.Agar khana sahi-salamat tum tak pahunch gaya, toh Promise poora ho gaya: Fulfilled (Resolved).Agar beech raste mein delivery boy ka accident ho gaya ya restaurant band mila, 
+toh Promise toot gaya: Rejected.Node.js/JavaScript mein bhi exact yahi cheez hoti hai jab hum database se data nikalte hain ya file read karte hain.🛠️ Promise Ka Syntax (Anatomy)Ek Promise do cheezein leta hai apne andar: 
+resolve (kaam pakka hone par chalane ke liye) aur reject (error aane par chalane ke liye).
+
+
+Chalo ek simple Promise banakar dekhte hain jo kisi database se user ka data laane ka natak (simulate) karega:JavaScriptconst checkUserInDB = (userId) => {
+  // Hum naya Promise return kar rahe hain
+  return new Promise((resolve, reject) => {
+    console.log("🔍 Database mein user dhoodha jaa raha hai...");
+
+    // 2 second ka fake network delay
+    setTimeout(() => {
+      const userFound = true; // Isko false karke bhi test karenge
+
+      if (userFound) {
+        // Agar user mil gaya, toh data ke saath resolve kar do
+        resolve({ id: userId, name: "Mehtab", status: "Active" });
+      } else {
+        // Agar gadbad hui, toh error ke saath reject kar do
+        reject("❌ Error: User database mein nahi mila!");
+      }
+    }, 2000);
+  });
+};
+🚀 Promise Ko Use Kaise Karte Hain? 
+(.then aur .catch)Upar jo function humne banaya hai, wo ek Promise return karta hai. Uska data nikalne ke liye hum do tools ka use karte hain:.then() $\rightarrow$ Agar promise resolve hua, toh ye chalega..catch() $\rightarrow$ Agar promise reject hua, toh ye chalega.JavaScript// Function ko call kiya
+checkUserInDB("USER_101")
+  .then((userData) => {
+    // resolve() ka data yahan userData mein aayega
+    console.log("🎉 Promise Fulfilled! User ka data mila:", userData);
+  })
+  .catch((error) => {
+    // reject() ka message yahan error mein aayega
+    console.log("😢 Promise Broken! Wajah:", error);
+  });
+🧠 Output Kaise Aayega?
+Pehle turant print hoga: 🔍 Database mein user dhoodha jaa raha hai...Server freeze nahi hoga, 
+baaki kaam chalte rahenge.Thik 2 second baad, screen par aayega: 🎉 Promise Fulfilled! User ka data mila: { id: 'USER_101', name: 'Mehtab', status: 'Active' }
