@@ -1,0 +1,34 @@
+🕵️‍♂️ Middleware Kya Hota Hai? (Aasan Bhasha Mein)
+Middleware ko tum apne server ka "Security Guard" ya "CCTV Camera" samajh sakte ho.
+
+Jab bhi koi user tumhare kisi route (jaise /todos) par request bhejta hai, toh woh request direct tumhare route handler (function) tak nahi pahunchti.
+Uske beech mein ek layer hoti hai jo request ko check karti hai, use badalti hai, ya fir wahin se laat maar kar bhaga sakti hai. Usi layer ko hum Middleware kehte hain.
+
+Ek Mazedaar Misaal:
+Maan lo tum ek VIP Club (Route) mein jaana chahte ho:
+
+Tum Gate par pahunche (Request).
+
+Gatekeeper ne tumhara ID-Card check kiya aur tumhare haath par ek stamp lagaya (Middleware).
+
+Agar ID sahi thi, toh usne bola "Aage jao" (next()).
+
+Tum Club ke andar pahunche aur party shuru (Route Handler/Response).
+
+
+🛠️ Middleware Ka Ek Live Example Dekhte Hain
+Hum apni isi Todo API mein ek khud ka custom middleware banayenge: Ek simple Logger Middleware jo har aane wali request ka method aur URL terminal mein print karega.
+
+Apne code mein jahan app.use(express.json()) likha hai, thik uske neeche ye chota sa function jodh do:
+
+JavaScript
+// Hamara Pehla Custom Middleware 🕵️‍♂️
+app.use((req, res, next) => {
+    console.log(`📡 [${new Date().toLocaleTimeString()}] ${req.method} Request aayi hai: ${req.url}`);
+    
+    // 🔥 Sabse Zaroori Line: Agar next() nahi likhoge, toh request yahin atak jayegi aur ghoomti rahegi!
+    next(); 
+});
+Isko Likhne Ke Baad Kya Hoga?
+Ise save karo, server chalao aur Thunder Client se kisi bhi route par request bhejo (chahe GET ho ya POST). Tum dekhoge ki tumhare terminal mein ab ekdam professional tarike se live logs print ho rahe hain:
+📡 [3:30:15 PM] GET Request aayi hai: /todos
