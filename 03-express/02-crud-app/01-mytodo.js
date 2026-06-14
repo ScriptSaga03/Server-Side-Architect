@@ -50,10 +50,10 @@ app.put('/todos/update/:id', (req, res) =>{
 
     if(!isExist) return res.status(400, ({error: `❌${todoId} not found!`}));
 
-    if (title !== undefined) todos.title = title;
-    if (completed !== undefined) todos.completed = completed;
+   if (title !== undefined) isExist.title = title;
+   if (completed !== undefined) isExist.completed = completed;
 
-    res.status(200).json({ msg: "🔄 Todo updated successfully", data: todos });
+   res.status(200).json({ msg: "🔄 Todo updated successfully", data: isExist }); /
 })
 
 
