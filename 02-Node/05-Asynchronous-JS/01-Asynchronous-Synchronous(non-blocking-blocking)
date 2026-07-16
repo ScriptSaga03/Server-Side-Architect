@@ -3,19 +3,25 @@
 
 Pehle ek simple analogy samajhte hain. Maan lo tum ek restaurant mein akele waiter ho (Single Thread).
 
-* **Synchronous Approach:** Ek customer aaya, tumne order liya, tum kitchen mein gaye, aur jab tak uska khana 20 minute mein ban nahi gaya, tum counter par khade rahe. Is beech baaki ke 5 customers line mein bhookhe khade hain aur gussa ho rahe hain (Server Blocked).
-* **Asynchronous Approach:** Ek customer aaya, tumne order lekar kitchen ko de diya, aur tum turant doosre customer ka order lene chale gaye. Jab pehle wale ka khana taiyar ho jayega, kitchen se bell bajegi, aur tum use khana serve kar doge. Isse koi bhi line mein block nahi hoga (Non-Blocking).
+* **Synchronous Approach:** Ek customer aaya, tumne order liya, tum kitchen mein gaye, 
+aur jab tak uska khana 20 minute mein ban nahi gaya, 
+tum counter par khade rahe. Is beech baaki ke 5 customers line mein bhookhe khade hain aur gussa ho rahe hain (Server Blocked).
 
-> 💡 **Node.js ki taqat:** Node.js isi Asynchronous/Non-Blocking tareeqe par chalta hai. Wo kabhi bhi kisi heavy task (jaise database se data nikalna ya file read karna) ke liye ruka nahi rehta.
+
+* **Asynchronous Approach:** Ek customer aaya, tumne order lekar kitchen ko de diya, 
+aur tum turant doosre customer ka order lene chale gaye. Jab pehle wale ka khana taiyar ho jayega, kitchen se bell bajegi, 
+aur tum use khana serve kar doge. Isse koi bhi line mein block nahi hoga (Non-Blocking).
+
+> 💡 **Node.js ki taqat:** Node.js isi Asynchronous/Non-Blocking tareeqe par chalta hai. 
+Wo kabhi bhi kisi heavy task (jaise database se data nikalna ya file read karna) ke liye ruka nahi rehta.
 
 ---
 
 ## 💻 Code Se Samjho: Dono Mein Antar
-
 Chalo ek chota sa test code dekhte hain jo is cheez ko bilkul saaf kar dega.
 
-### 1. Synchronous Execution (Line-by-Line)
 
+### 1. Synchronous Execution (Line-by-Line)
 Isme jab tak beech wali line poori khatam nahi hoti, niche wala code wait karta hai.
 
 ```javascript
@@ -32,7 +38,6 @@ console.log("3. Bill de diya");
 **Output Sequence:** `1` $\rightarrow$ *(3 second ka freeze)* $\rightarrow$ `2` $\rightarrow$ `3`.
 
 ### 2. Asynchronous Execution (Background Task)
-
 Ab hum Node.js ke built-in `setTimeout` ka use karke is task ko background mein bhejte hain.
 
 ```javascript
