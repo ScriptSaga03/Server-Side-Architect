@@ -3,18 +3,23 @@
 
 Pehle ek sach jaan lo: JavaScript Single-Threaded hai.
 
-💡 Thread kya hota hai? Ek thread ka matlab hai ek single rasta ya ek akela worker jo ek baar mein sirf ek hi kaam kar sakta hai. Agar ek kaam chal raha hai, toh dusra kaam line mein khada rahega (ise sync ya blocking kehte hain).
+💡 Thread kya hota hai? Ek thread ka matlab hai ek single rasta ya ek akela worker jo ek baar mein sirf ek hi kaam kar sakta hai.
+Agar ek kaam chal raha hai, toh dusra kaam line mein khada rahega (ise sync ya blocking kehte hain).
 
-Ab dimaag mein sawal aata hai: Agar Node.js single-threaded hai, toh jab ek sath lakhon log Amazon ya kisi badi website par request bhejte hain, toh server crash kyun nahi hota? Wo ek sath itne saare kaam kaise kar leta hai?
+Ab dimaag mein sawal aata hai: Agar Node.js single-threaded hai, 
+toh jab ek sath lakhon log Amazon ya kisi badi website par request bhejte hain, toh server crash kyun nahi hota? 
+Wo ek sath itne saare kaam kaise kar leta hai?
 
 Iska jawab chhupa hai do cheezon mein: V8 Engine aur Libuv Library.
 
 Node.js ke Piche ka Real Architecture
 Node.js ke andar do sabse bade pillars hote hain:
 
-V8 Engine (Google ka): Iska kaam hai aapke JS code ko samajhna aur use machine code (0101) mein convert karna taaki computer use chala sake.
+V8 Engine (Google ka): Iska kaam hai aapke JS code ko samajhna aur use machine code (0101) 
+mein convert karna taaki computer use chala sake.
 
-Libuv (C++ Library): Ye Node.js ka asli baahubali hai. Ye C++ mein likhi gayi ek library hai jo Node.js ko Event Loop aur Thread Pool deti hai. Iska kaam hai piche ke saare bhaari kaam (jaise file read karna, database se connect hona, internet se data lana) sambhalna.
+Libuv (C++ Library): Ye Node.js ka asli baahubali hai. Ye C++ mein likhi gayi ek library hai jo Node.js ko Event Loop aur
+Thread Pool deti hai. Iska kaam hai piche ke saare bhaari kaam (jaise file read karna, database se connect hona, internet se data lana) sambhalna.
 
 🔄 The Event Loop (Simple Kahani)
 Chalo ek simple hotel ki kahani se samajhte hain:
@@ -24,11 +29,14 @@ The Waiter (Single Thread / Event Loop): Hotel mein sirf ek hi waiter hai. Wo sa
 The Kitchen (Thread Pool / Web APIs): Kitchen mein bohot saare chefs (multiple threads) hain jo khana banate hain.
 
 Kaam kaise hota hai?
-Waiter table 1 par gaya, order liya, aur kitchen mein chef ko de diya (chef ko khana banane mein 15 mins lagenge). Ab waiter wahan khada hokar 15 mins waste nahi karega!
+Waiter table 1 par gaya, order liya, aur kitchen mein chef ko de diya (chef ko khana banane mein 15 mins lagenge). 
+Ab waiter wahan khada hokar 15 mins waste nahi karega!
 Wo turant table 2 par jayega, unka order lega, aur use bhi kitchen mein de dega.
 Jaise hi table 1 ka khana ready hoga, kitchen se bell bajegi (Callback). Waiter jaakar khana table 1 ko serve kar dega.
 
-Node.js bhi bilkul aise hi kaam karta hai! Jo kaam time lene wale hote hain (jaise database se data lana), Node.js unhe piche Libuv (kitchen) ko de deta hai aur khud aage badh jaata hai naye requests lene. Jab kaam khatam ho jata hai, toh ek Callback Function ke zariye wo data wapas mil jata hai. Is mechanism ko kehte hain Non-blocking I/O (Input/Output).
+Node.js bhi bilkul aise hi kaam karta hai! Jo kaam time lene wale hote hain (jaise database se data lana),
+Node.js unhe piche Libuv (kitchen) ko de deta hai aur khud aage badh jaata hai naye requests lene. Jab kaam khatam ho jata hai, 
+toh ek Callback Function ke zariye wo data wapas mil jata hai. Is mechanism ko kehte hain Non-blocking I/O (Input/Output).
 
 */
 
