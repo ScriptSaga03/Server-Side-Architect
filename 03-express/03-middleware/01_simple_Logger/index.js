@@ -13,8 +13,8 @@ import helmet from 'helmet'
 // create an express app
 const app = express();
 
-// app.use(helmet());
-// app.use(morgan('dev'))
+app.use(helmet());
+app.use(morgan('dev'))
 
 
 // create PORT 
@@ -25,13 +25,23 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Custom Application Level Middleware
-// simple logger 
+
 app.use((req, res, next) =>{
     req.requestTime = new Date().toLocaleTimeString();
-    console.log(`📡 [LOG]: ${req.method} request received at ${req.url} | Time: ${req.requestTime}`);
+    // console.log(`📡 [LOG]: ${req.method} request received at ${req.url} | Time: ${req.requestTime}`);
    next();
 })
 
+// 'finish' event tab fire hota hai jab Express client ko response bhej chuka hota hai
+// Performance middleware
+app.use((req, res, next) =>{
+    const start =Date.now();
+    res.on('finish', () =>{
+        const duration  = Date.now() - start;
+        console.log(`Performance: ${req.method} | ${req.url} | took ${duration}ms to process.` );
+    })
+        next()
+})
 
 
 
