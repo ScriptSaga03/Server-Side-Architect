@@ -1,0 +1,23 @@
+{
+  "name": "01_devnotes",
+  "version": "1.0.0",
+  "description": "devNotes by Mehtab",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "mehtab": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "morgan": "^1.11.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
