@@ -1,0 +1,6 @@
+
+[
+  { "id": 1, "name": "Mehtab", "role": "Developer", "age": 24 },
+  { "id": 2, "name": "Rahul", "role": "Designer", "age": 22 },
+  { "id": 3, "name": "Aman", "role": "Manager", "age": 28 }
+]
