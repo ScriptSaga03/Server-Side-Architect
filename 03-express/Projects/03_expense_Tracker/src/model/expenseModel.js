@@ -4,6 +4,7 @@ const expenseSchema = new mongoose.Schema(
     {
         title: {
             type: String,
+            unique:true,
             required: [true, "Title is required"],
             trim: true,
             minLength: [3, "Title must be at least 3 characters"],

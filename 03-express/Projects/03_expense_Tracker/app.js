@@ -11,6 +11,7 @@ import dotenv from 'dotenv'
 import connectDB from './src/config/db.js';
 import notFound from './src/utils/notfoundHandler.js';
 import errorHandler from './src/middleware/errorHandler.js';
+import router from './src/router/expenseRouter.js';
 
 // IMPLEMENT ENV
 dotenv.config()
@@ -29,12 +30,7 @@ app.use(morgan("dev"));
 
 
 // ROUTER MOUNTING
-app.get("/api/v1/expenses", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "🚀 Smart Expense Tracker API is running smoothly!"
-    });
-});
+app.use("/api/v1/expenses" , router)
 
 
 
