@@ -12,6 +12,8 @@ import connectDB from './src/config/db.js';
 import notFound from './src/utils/notfoundHandler.js';
 import errorHandler from './src/middleware/errorHandler.js';
 import router from './src/router/expenseRouter.js';
+import morganMiddleware from './src/middleware/morganLogger.js';
+
 
 // IMPLEMENT ENV
 dotenv.config()
@@ -26,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // APPLICATION LEVEL MIDDLEWARE
+app.use(morganMiddleware)
 
 
 
