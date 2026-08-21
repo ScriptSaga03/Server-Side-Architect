@@ -1,0 +1,25 @@
+[2026-08-20 17:59:46] [ERROR]: 404 - ❌ Can't find /ap/v1/expenses?category=food,travel,shopping&sort=oldest&page=1&limit=5 on this server! - GET /ap/v1/expenses?category=food,travel,shopping&sort=oldest&page=1&limit=5
+Stack: Error: ❌ Can't find /ap/v1/expenses?category=food,travel,shopping&sort=oldest&page=1&limit=5 on this server!
+    at customError (file:///C:/Full_Stack_Development/express/projects/04_SmartExpenseTracker/src/utils/customError.js:2:17)
+    at notFound (file:///C:/Full_Stack_Development/express/projects/04_SmartExpenseTracker/src/utils/notfoundHandler.js:4:10)
+    at Layer.handleRequest (C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\index.js:342:13)
+    at C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\index.js:297:9
+    at processParams (C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\index.js:582:12)
+    at next (C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\index.js:291:5)
+    at morganMiddleware (file:///C:/Full_Stack_Development/express/projects/04_SmartExpenseTracker/src/middleware/morganLogger.js:20:5)
+    at Layer.handleRequest (C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Full_Stack_Development\express\projects\04_SmartExpenseTracker\node_modules\router\index.js:342:13)
+[2026-08-20 18:02:23] [ERROR]: ❌ Error 404 - ❌ Can't find /ap/v1/expenses?category=food,travel,shopping&sort=oldest&page=1&limit=5 on this server!
+[2026-08-20 18:05:14] [ERROR]: ❌ Error 404 - ❌ Can't find /ap/v1/expenses?category=food,travel,shopping&sort=oldest&page=1&limit=5 on this server!
+[2026-08-21 16:38:44] [ERROR]: ❌ Error 404 - ❌ Can't find /ap/v1/expenses/auth/register on this server!
+[2026-08-21 16:39:25] [ERROR]: ❌ Error 400 - ❌ Username, email, and password are required!
+[2026-08-21 16:39:48] [ERROR]: ❌ Error 400 - Unexpected token '"', ""username="... is not valid JSON
+[2026-08-21 16:41:07] [ERROR]: ❌ Error 400 - Unexpected token '"', ""username="... is not valid JSON
+[2026-08-21 16:41:16] [ERROR]: ❌ Error 400 - ❌ Username, email, and password are required!
+[2026-08-21 16:41:28] [ERROR]: ❌ Error 400 - ❌ Username, email, and password are required!
+[2026-08-21 16:42:41] [ERROR]: ❌ Error 409 - ⚠️ Email already registered!, please login!
+[2026-08-21 16:42:52] [ERROR]: ❌ Error 500 - User validation failed: email: Invalid email address
+[2026-08-21 16:43:11] [ERROR]: ❌ Error 400 - Password must be 6 character
+[2026-08-21 16:43:45] [ERROR]: ❌ Error 400 - Password must be 6 character
+[2026-08-21 16:43:57] [ERROR]: ❌ Error 409 - ⚠️ Email already registered!, please login!
