@@ -12,6 +12,7 @@ import connectDB from './src/config/db.js';
 import notFound from './src/utils/notfoundHandler.js';
 import errorHandler from './src/middleware/errorHandler.js';
 import router from './src/router/expenseRouter.js';
+import authRouter from "./src/router/authRoutes.js"
 import morganMiddleware from './src/middleware/morganLogger.js';
 
 
@@ -25,7 +26,7 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+
 
 // APPLICATION LEVEL MIDDLEWARE
 app.use(morganMiddleware)
@@ -34,6 +35,7 @@ app.use(morganMiddleware)
 
 // ROUTER MOUNTING
 app.use("/api/v1/expenses" , router)
+app.use("/api/v1/expenses" , authRouter)
 
 
 
