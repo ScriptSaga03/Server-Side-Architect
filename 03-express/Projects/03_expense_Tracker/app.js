@@ -1,10 +1,12 @@
-
+import dotenv from 'dotenv';
+// IMPLEMENT ENV
+dotenv.config()
 
 // IMPORTS 
 import express from 'express';
 import helmet from 'helmet';
-import morgan from 'morgan';
-import dotenv from 'dotenv'
+
+
 
 
 // import files 
@@ -16,8 +18,7 @@ import authRouter from "./src/router/authRoutes.js"
 import morganMiddleware from './src/middleware/morganLogger.js';
 
 
-// IMPLEMENT ENV
-dotenv.config()
+
 
 // CREATE AN EXPRESS APP
 const app = express();
@@ -33,9 +34,12 @@ app.use(morganMiddleware)
 
 
 
+
+
 // ROUTER MOUNTING
+app.use("/api/v1/auth" , authRouter)
 app.use("/api/v1/expenses" , router)
-app.use("/api/v1/expenses" , authRouter)
+
 
 
 
