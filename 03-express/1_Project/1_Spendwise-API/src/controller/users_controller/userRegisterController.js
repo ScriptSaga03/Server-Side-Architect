@@ -54,4 +54,4 @@ export const registerUserController = asyncHandler(async (req, res) => {
         data: userData
     })
 
-})
+});

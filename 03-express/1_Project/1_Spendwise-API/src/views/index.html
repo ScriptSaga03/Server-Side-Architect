@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spendwise API - Documentation</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; margin: 0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; background: #1e293b; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        h1 { color: #38bdf8; margin-top: 0; }
+        .badge { background: #22c55e; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+        h3 { color: #f43f5e; border-bottom: 2px solid #334155; padding-bottom: 8px; margin-top: 40px; }
+        .endpoint-card { background: #334155; margin: 15px 0; padding: 20px; border-radius: 8px; border-left: 5px solid #38bdf8; }
+        .method-url { display: flex; align-items: center; gap: 10px; font-family: monospace; font-size: 15px; margin-bottom: 10px; color: #f8fafc; }
+        .method { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        .post { background: #3b82f6; color: white; }
+        .get { background: #10b981; color: white; }
+        .patch { background: #f59e0b; color: white; }
+        .delete { background: #ef4444; color: white; }
+        .full-url { background: #0f172a; color: #38bdf8; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 13px; margin: 8px 0; word-break: break-all; }
+        .desc { color: #cbd5e1; font-size: 14px; margin-bottom: 10px; }
+        .payload { background: #0f172a; padding: 10px 15px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #38bdf8; overflow-x: auto; margin-top: 8px; }
+        .note { color: #94a3b8; font-size: 12px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">● OFFICIAL API DOCS</span>
+        <h1>Spendwise API Documentation</h1>
+        <p>Welcome! This is the backend API documentation. Please copy the full URLs below and use them in <strong>Postman</strong> or <strong>Thunder Client</strong>.</p>
+
+        <!-- AUTH SECTION -->
+        <h3>🔐 Authentication Routes</h3>
+
+        <div class="endpoint-card" style="border-left-color: #3b82f6;">
+            <div class="method-url">
+                <span class="method post">POST</span> Register User
+            </div>
+            <div class="desc">Register a new user account into the system.</div>
+            <div class="note">Thunder Client / Postman URL:</div>
+            <div class="full-url">http://localhost:5000/api/v1/auth/register</div>
+            <div class="note">Required JSON Body Fields:</div>
+            <div class="payload">{ "username": "yourname", "email": "test@gmail.com", "password": "yourpassword" }</div>
+        </div>
+
+        <div class="endpoint-card" style="border-left-color: #3b82f6;">
+            <div class="method-url">
+                <span class="method post">POST</span> Login User
+            </div>
+            <div class="desc">Authenticate user credentials and generate a JSON Web Token (JWT).</div>
+            <div class="note">Thunder Client / Postman URL:</div>
+            <div class="full-url">http://localhost:5000/api/v1/auth/login</div>
+            <div class="note">Required JSON Body Fields:</div>
+            <div class="payload">{ "email": "test@gmail.com", "password": "yourpassword" }</div>
+        </div>
+
+        <!-- EXPENSES SECTION -->
+        <h3>💰 Expense Routes (Requires Bearer Token)</h3>
+
+        <div class="endpoint-card" style="border-left-color: #10b981;">
+            <div class="method-url">
+                <span class="method get">GET</span> Get All Expenses
+            </div>
+            <div class="desc">Fetch all expenses (Supports optional query filters like <code>?category=Food&sort=price-desc</code>).</div>
+            <div class="note">Thunder Client / Postman URL:</div>
+            <div class="full-url">http://localhost:5000/api/v1/expenses</div>
+        </div>
+
+        <div class="endpoint-card" style="border-left-color: #3b82f6;">
+            <div class="method-url">
+                <span class="method post">POST</span> Create Expense
+            </div>
+            <div class="desc">Log and create a new expense record.</div>
+            <div class="note">Thunder Client / Postman URL:</div>
+            <div class="full-url">http://localhost:5000/api/v1/expenses</div>
+            <div class="note">Required JSON Body Fields:</div>
+            <div class="payload">{ "title": "Grocery", "amount": 500, "category": "Food", "paymentMethod": "UPI", "isRecurring": false }</div>
+        </div>
+
+        <div class="endpoint-card" style="border-left-color: #10b981;">
+            <div class="method-url">
+                <span class="method get">GET</span> Get Expense By ID
+            </div>
+            <div class="desc">Retrieve details of a specific expense by its unique ID.</div>
+            <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
+            <div class="full-url">http://localhost:5000/api/v1/expenses/:id</div>
+        </div>
+
+        <div class="endpoint-card" style="border-left-color: #f59e0b;">
+            <div class="method-url">
+                <span class="method patch">PATCH</span> Update Expense
+            </div>
+            <div class="desc">Update an existing expense document.</div>
+            <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
+            <div class="full-url">http://localhost:5000/api/v1/expenses/:id</div>
+            <div class="note">Required JSON Body Fields:</div>
+            <div class="payload">{ "amount": 600, "category": "Bills" }</div>
+        </div>
+
+        <div class="endpoint-card" style="border-left-color: #ef4444;">
+            <div class="method-url">
+                <span class="method delete">DELETE</span> Delete Expense
+            </div>
+            <div class="desc">Delete a specific expense record by ID.</div>
+            <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
+            <div class="full-url">http://localhost:5000/api/v1/expenses/:id</div>
+        </div>
+
+        <div class="endpoint-card" style="border-left-color: #f59e0b;">
+            <div class="method-url">
+                <span class="method patch">PATCH</span> Atomic Update
+            </div>
+            <div class="desc">Apply high-level atomic operators ($inc, $addToSet, etc.) on specific fields.</div>
+            <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
+            <div class="full-url">http://localhost:5000/api/v1/expenses/atomic/:id</div>
+            <div class="note">Required JSON Body Fields:</div>
+            <div class="payload">{ "amountDelta": 100, "addTag": "urgent" }</div>
+        </div>
+
+    </div>
+</body>
+</html>

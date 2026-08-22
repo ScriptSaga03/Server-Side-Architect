@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config()
 
 // IMPORTS 
-import express from 'express';
+import express, { json } from 'express';
 import helmet from 'helmet';
 
 
@@ -18,6 +18,14 @@ import authRouter from "./src/router/authRoutes.js"
 import morganMiddleware from './src/middleware/morganLogger.js';
 
 
+
+
+// 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // CREATE AN EXPRESS APP
@@ -37,6 +45,12 @@ app.use(morganMiddleware)
 
 
 // ROUTER MOUNTING
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", 'views', 'index.html'));
+});
+
+
 app.use("/api/v1/auth" , authRouter)
 app.use("/api/v1/expenses" , router)
 
