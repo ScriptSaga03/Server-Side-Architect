@@ -4,7 +4,6 @@ const expenseSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            unique:true,
             required: [true, "Title is required"],
             trim: true,
             minLength: [3, "Title must be at least 3 characters"],
@@ -40,6 +39,11 @@ const expenseSchema = new mongoose.Schema(
         date: {
             type: Date,
             default: Date.now 
+        },
+        userId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User",
+            required:[true, "Expense must belong to a user!"]
         }
     },
     {

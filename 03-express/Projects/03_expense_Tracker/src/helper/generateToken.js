@@ -2,14 +2,14 @@
 import jwt from 'jsonwebtoken';
 
 
-const JWT_SECRET_KEY = process.env.JWT_WEB_TOKEN || "mysuperSecretKey123";
-const options = {expiresIn: process.env.JWT_EXPIRY_IN || '1h' };
+export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "mysuperSecretKey123";
+const options = {expiresIn: process.env.JWT_EXPIRED_IN || '1h' };
 
 
 export const generateToken  = (user) =>{
     const payload = {
-        id:user.id,
-        name:user.name,
+        id:user._id,
+        name:user.username,
         email:user.email,
         role:user.role
     }

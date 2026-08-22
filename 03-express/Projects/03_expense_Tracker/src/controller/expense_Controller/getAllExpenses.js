@@ -12,7 +12,7 @@ const getAllExpenses = asyncHandler(async (req, res) => {
     const skip = (pageNum - 1) * limitNum;
 
     // Build Dynamic Mongo Filter Object
-    const queryOBJ = {};
+    const queryOBJ = {userId:req.user._id};
     const sortingOpt = {};
 
     // SORTING LOGIC 
