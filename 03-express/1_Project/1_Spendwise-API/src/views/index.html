@@ -25,7 +25,7 @@
 </head>
 <body>
     <div class="container">
-        <span class="badge">● OFFICIAL API DOCS</span>
+        <span class="badge">● LIVE API DOCS</span>
         <h1>Spendwise API Documentation</h1>
         <p>Welcome! This is the backend API documentation. Please copy the full URLs below and use them in <strong>Postman</strong> or <strong>Thunder Client</strong>.</p>
 
@@ -38,7 +38,7 @@
             </div>
             <div class="desc">Register a new user account into the system.</div>
             <div class="note">Thunder Client / Postman URL:</div>
-            <div class="full-url">http://localhost:5000/api/v1/auth/register</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/auth/register</div>
             <div class="note">Required JSON Body Fields:</div>
             <div class="payload">{ "username": "yourname", "email": "test@gmail.com", "password": "yourpassword" }</div>
         </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="desc">Authenticate user credentials and generate a JSON Web Token (JWT).</div>
             <div class="note">Thunder Client / Postman URL:</div>
-            <div class="full-url">http://localhost:5000/api/v1/auth/login</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/auth/login</div>
             <div class="note">Required JSON Body Fields:</div>
             <div class="payload">{ "email": "test@gmail.com", "password": "yourpassword" }</div>
         </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="desc">Fetch all expenses (Supports optional query filters like <code>?category=Food&sort=price-desc</code>).</div>
             <div class="note">Thunder Client / Postman URL:</div>
-            <div class="full-url">http://localhost:5000/api/v1/expenses</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/expenses</div>
         </div>
 
         <div class="endpoint-card" style="border-left-color: #3b82f6;">
@@ -72,7 +72,7 @@
             </div>
             <div class="desc">Log and create a new expense record.</div>
             <div class="note">Thunder Client / Postman URL:</div>
-            <div class="full-url">http://localhost:5000/api/v1/expenses</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/expenses</div>
             <div class="note">Required JSON Body Fields:</div>
             <div class="payload">{ "title": "Grocery", "amount": 500, "category": "Food", "paymentMethod": "UPI", "isRecurring": false }</div>
         </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="desc">Retrieve details of a specific expense by its unique ID.</div>
             <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
-            <div class="full-url">http://localhost:5000/api/v1/expenses/:id</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/expenses/:id</div>
         </div>
 
         <div class="endpoint-card" style="border-left-color: #f59e0b;">
@@ -92,7 +92,7 @@
             </div>
             <div class="desc">Update an existing expense document.</div>
             <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
-            <div class="full-url">http://localhost:5000/api/v1/expenses/:id</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/expenses/:id</div>
             <div class="note">Required JSON Body Fields:</div>
             <div class="payload">{ "amount": 600, "category": "Bills" }</div>
         </div>
@@ -103,7 +103,7 @@
             </div>
             <div class="desc">Delete a specific expense record by ID.</div>
             <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
-            <div class="full-url">http://localhost:5000/api/v1/expenses/:id</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/expenses/:id</div>
         </div>
 
         <div class="endpoint-card" style="border-left-color: #f59e0b;">
@@ -112,7 +112,7 @@
             </div>
             <div class="desc">Apply high-level atomic operators ($inc, $addToSet, etc.) on specific fields.</div>
             <div class="note">Thunder Client / Postman URL (Replace :id with actual MongoDB ID):</div>
-            <div class="full-url">http://localhost:5000/api/v1/expenses/atomic/:id</div>
+            <div class="full-url">https://spendwise-api-5ft3.onrender.com/api/v1/expenses/atomic/:id</div>
             <div class="note">Required JSON Body Fields:</div>
             <div class="payload">{ "amountDelta": 100, "addTag": "urgent" }</div>
         </div>
