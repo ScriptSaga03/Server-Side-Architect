@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 
 export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "mysuperSecretKey123";
-const options = {expiresIn: process.env.JWT_EXPIRED_IN || '2min' };
+const options = {expiresIn: process.env.JWT_EXPIRED_IN || '1h' };
 
 
 export const generateToken  = (user) =>{

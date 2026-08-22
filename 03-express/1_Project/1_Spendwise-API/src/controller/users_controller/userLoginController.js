@@ -27,7 +27,7 @@ export const userLoginController = asyncHandler(async(req, res) => {
     const user  = await User.findOne({email}).select("+password");
     // CHECK EXISTENCE GUARD
     if(!user){
-        throw customError(401, "❌ Wrong Credentials")
+        throw customError(401, "❌ User not found! Please register first.")
     }
     // CHECK IS ACCOUNT IS BLOCKED / User Suspension / Blocking Guard (403 Forbidden)
     if(user.isBlocked){

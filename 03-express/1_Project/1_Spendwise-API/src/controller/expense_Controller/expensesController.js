@@ -2,6 +2,15 @@ import mongoose from "mongoose";
 import Expense from "../../model/expenseModel.js";
 import asyncHandler from "../../utils/asyncHandler.js";
 import customError from "../../utils/customError.js";
+import { checkOwnership } from "../../helper/checkOwnership.js";
+
+
+
+
+
+
+
+
 
 // CREATE SINGLE DOCUMENT 
 export const createExpense = asyncHandler(async (req, res) => {
@@ -16,7 +25,8 @@ export const createExpense = asyncHandler(async (req, res) => {
         amount,
         category,
         paymentMethod,
-        isRecurring
+        isRecurring,
+        userId: req.user._id
     });
 
     return res.status(201).json({
@@ -28,6 +38,15 @@ export const createExpense = asyncHandler(async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
 // UPDATE DOCUMENT 
 export const updateExpense = asyncHandler(async (req, res) => {
     const { id } = req.params;
@@ -36,23 +55,49 @@ export const updateExpense = asyncHandler(async (req, res) => {
         throw customError(400, "Invalid Expense ID Format");
     }
 
-  
+
+
+    // FETCH 
+    const expense = await Expense.findById(id).lean();
+    // 2. Existence check
+    if (!expense) {
+        throw customError(404, "Expense not found to update!");
+    }
+
+    // 3. 💡 Ownership Guard Check (BEFORE Update)
+    checkOwnership(expense.userId, req.user._id);
+
+
+
     const updatedExpense = await Expense.findByIdAndUpdate(
         id,
         { $set: req.body },
-        { new: true, runValidators: true }
+        { returnDocument: "after", runValidators: true }
     ).select("-__v").lean();
 
     if (!updatedExpense) {
         throw customError(404, "Expense not found to update!");
     }
 
+
+
     return res.status(200).json({
         success: true,
         message: "Expense updated successfully",
-        data: updatedExpense // Fixed variable name typo here
+        data: updatedExpense 
     });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -64,19 +109,42 @@ export const deleteExpense = asyncHandler(async (req, res) => {
         throw customError(400, "Invalid Expense ID Format");
     }
 
-    const removeExp = await Expense.findByIdAndDelete(id).lean();
-
-    if (!removeExp) {
+    // FETCH 
+    const expense = await Expense.findById(id);
+    // 2. Existence check
+    if (!expense) {
         throw customError(404, "Expense not found to delete!");
     }
 
-    // Fixed: Return explicit JSON response
+    // 3. 💡 Ownership Guard Check (BEFORE delete)
+    checkOwnership(expense.userId, req.user._id);
+
+    // 4. Delete Execution
+    await expense.deleteOne();
+
     return res.status(200).json({
         success: true,
         message: "Expense deleted successfully",
-        data: { id: removeExp._id }
+        data: { id: expense._id }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,10 +157,15 @@ export const getExpenseById = asyncHandler(async (req, res) => {
     }
 
     const expense = await Expense.findById(id).select("-__v").lean();
+    // FETCH ONLY EXPENSES BELONGING  TO THE LOGGED-IN USER
+    // const userExpenses = await Expense.findById({userId: req.user._id}).select("-__v").lean()
 
     if (!expense) {
         throw customError(404, "Expense not found");
     }
+
+    // 💡 Ownership Guard Check
+    checkOwnership(expense.userId, req.user._id);
 
     return res.status(200).json({
         success: true,
@@ -113,6 +186,18 @@ export const applyAtomicUpdate = asyncHandler(async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         throw customError(400, "Invalid Expense ID Format");
     }
+
+    // 1. Fetch
+    const expense = await Expense.findById(id);
+
+    // 2. Existence check
+    if (!expense) {
+        throw customError(404, "Expense not found to update!");
+    }
+
+    // 3. 💡 Ownership Guard Check (BEFORE atomic update)
+    checkOwnership(expense.userId, req.user._id);
+
 
     const updateQuery = {};
 
@@ -139,12 +224,13 @@ export const applyAtomicUpdate = asyncHandler(async (req, res) => {
     const updatedExpense = await Expense.findByIdAndUpdate(
         id,
         updateQuery,
-        { new: true, runValidators: true }
+        { returnDocument: "after", runValidators: true }
     ).select("-__v").lean();
 
     if (!updatedExpense) {
         throw customError(404, "Expense not found to update!");
     }
+
 
     return res.status(200).json({
         success: true,
