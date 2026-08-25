@@ -1,18 +1,18 @@
+import customError from "../utils/customError.js";
 
-import customError  from "../utils/customError.js";
-
-export const authorizeRoles =(...allowedRoles) =>{
+export const authorizeRoles = (...allowedRoles) => {
     return (req, res, next) => {
 
-        // 1. Check if user is authenticated and has a role
-        if(!req.user){
-            throw customError(403, "🚫 You are not authorized to perform this action!");
+        // 1. Authentication Check
+        if (!req.user) {
+            return next(customError(401, "❌ Unauthenticated! Please login first."));
         }
 
-        // 2. Check if user's role is in the allowed roles array
-        if(!allowedRoles.includes(req.user.role)){
-            throw customError(403, "🚫 You are not authorized to perform this action!");
+        // 2. Role Authorization Check
+        if (!allowedRoles.includes(req.user.role)) {
+            return next(customError(403, "🚫 Access denied! You do not have permission."));
         }
-        next();
-    }
-}
+
+        return next();
+    };
+};
