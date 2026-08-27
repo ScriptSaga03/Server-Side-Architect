@@ -24,7 +24,7 @@ export const validateInput = (req, res, next) => {
 
 
     }
-    next();
+    return next();
 
 }
 

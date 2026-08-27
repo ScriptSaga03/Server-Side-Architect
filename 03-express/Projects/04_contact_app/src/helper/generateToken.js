@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken';
 
 
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'narutoUzumaki';
+export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'narutoUzumaki';
 const options = { expiresIn: process.env.JWT_EXPIRED_IN || '1h' };
 
 const generateToken = (user) => {
