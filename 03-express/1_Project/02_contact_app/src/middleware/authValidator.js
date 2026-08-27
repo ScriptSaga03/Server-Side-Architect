@@ -1,32 +1,10 @@
 
 
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
+import { validateInput } from './validateInput.js';
 
 
 
-export const validateInput = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        const extractedErrors = errors.array({ onlyFirstError: true }).map(err => {
-            return {
-                field: err.path,
-                message: err.msg
-            }
-        })
-
-        return res.status(400).json({
-            success: false,
-            statusCode: 400,
-            status: 'fail',
-            message: "Validation failed",
-            errors: extractedErrors
-        })
-
-
-    }
-    next();
-
-}
 
 
 
