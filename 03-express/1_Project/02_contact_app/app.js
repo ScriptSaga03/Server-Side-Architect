@@ -15,7 +15,9 @@ import cors from 'cors';
 import connectDB from './src/config/db.js';
 import centralizedErrorHandler from './src/middleware/errorHandlerMiddleware.js';
 import routeNotFound from './src/utils/notFound.js';
-import router from './src/routes/authRoutes.js';
+import authRouter from './src/routes/authRoutes.js';
+import router from './src/routes/contactsRoutes.js';
+import morganMiddleware from './src/middleware/morganLogger.js';
 
 
 // CREATE AN EXPRESS APP
@@ -26,17 +28,22 @@ app.use(helmet());
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(morgan("dev"));
+
 
 
 
 // APPLICATION LEVEL MIDDLEWARE
-
+app.use(morganMiddleware);
 
 // ROUTE MOUNTING
 app.get("/", (req, res) => {
     return res.send(`<h1>Contact App Backend API is Running 🚀</h1>`)});
-app.use("/auth", router)
+
+// AUTHENTICATION ROUTES 
+app.use("/auth", authRouter);
+
+// CONTACT ROUTES
+app.use("/" , router);
 
 // UNMATCHED ROUTES HANDLER
 app.use(routeNotFound)
