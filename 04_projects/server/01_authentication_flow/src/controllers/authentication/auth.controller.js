@@ -2,6 +2,7 @@ import {
   loginUserService,
   registerUserService,
   verifyEmailService,
+  verifyLoginOtpService
 } from "../../services/authService.js";
 import asynHandler from "../../utils/asyncHandler.js";
 
@@ -23,20 +24,8 @@ export const register = asynHandler(async (req, res) => {
   });
 });
 
-// lOGIN CONTROLLER
-export const login = asynHandler(async (req, res) => {
-  const { token, user } = await loginUserService(req.body);
 
-  return res.status(200).json({
-    success: true,
-    statusCode: 200,
-    message: "✅ User logged in successfully.",
-    data: {
-      token,
-      user,
-    },
-  });
-});
+
 
 // VERIFY EMAIL CONTROLLER
 export const verifyEmail = asynHandler(async (req, res) => {
@@ -51,3 +40,47 @@ export const verifyEmail = asynHandler(async (req, res) => {
     data: result,
   });
 });
+
+// lOGIN CONTROLLER
+// export const login = asynHandler(async (req, res) => {
+//   const { token, user } = await loginUserService(req.body);
+
+//   return res.status(200).json({
+//     success: true,
+//     statusCode: 200,
+//     message: "✅ User logged in successfully.",
+//     data: {
+//       token,
+//       user,
+//     },
+//   });
+// });
+
+
+
+// LOGIN CONTROLLER
+export const login = asynHandler(async (req, res) => {
+  const result = await loginUserService(req.body);
+
+  return res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "✅ Credentials verified. An OTP has been sent to your registered email.",
+    data: result,
+  });
+});
+
+
+
+// VERIFY LOGIN OTP CONTROLLER
+export const verifyLoginOtp = asynHandler(async (req, res) => {
+  const result = await verifyLoginOtpService(req.body);
+
+  return res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "✅ Login successful! Welcome back.",
+    data: result,
+  });
+});
+

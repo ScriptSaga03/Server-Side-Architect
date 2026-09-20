@@ -12,7 +12,7 @@ export const sendMail = async (options) => {
     },
   });
 
-  //   define email option\
+  //   define email option
   const mailOptions = {
     from: process.env.EMAIL_FROM,
     to: options.email,

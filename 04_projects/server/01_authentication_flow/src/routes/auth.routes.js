@@ -1,7 +1,7 @@
 
 
 import express from 'express';
-import { login, register, verifyEmail } from '../controllers/authentication/auth.controller.js';
+import { login, register, verifyEmail,verifyLoginOtp } from '../controllers/authentication/auth.controller.js';
 import { loginValidationRule, registerValidationRules as validation , } from '../middleware/authMiddleware/authMiddleware.js';
 
 
@@ -15,6 +15,9 @@ router.get("/verify-email", verifyEmail);
 router.post("/register", validation, register);
 router.post("/login", loginValidationRule, login);
 
+
+// 🎯 2FA Login OTP Verification Route
+router.post("/verify-login-otp", verifyLoginOtp);
 
 
 export default router

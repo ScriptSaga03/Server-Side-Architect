@@ -39,6 +39,12 @@ const userSchema = new mongoose.Schema(
     },
     emailVerificationToken:String,
     emailVerificationExpires:Date,
+
+
+    // Login 2FA OTP Fields
+    loginOtp: String,
+    loginOtpExpires: Date,
+    
     passwordResetToken:String,
     passwordResetExpires:Date
   },
