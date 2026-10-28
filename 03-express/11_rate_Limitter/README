@@ -1,1 +1,81 @@
+1. What (Rate Limiter kya hai?)
+Rate Limiter ek aisi security mechanism hai jo yeh control karti hai ki ek user ya IP address ek fixed time window (jaise 1 minute, 1 hour) 
+mein kitni baar kisi API endpoint ko request bhej sakta hai.
 
+Agar user limit exceed kar deta hai, toh server request block karke HTTP status code 429 Too Many Requests return kar deta hai.
+
+2. Why (Kyun zaroori hai?)
+Brute Force Attacks se bachav: Jaise koi bot ya attacker login/signup route par ek second mein 1000 passwords try kar raha ho, toh rate limiter use rok deta hai.
+
+API Abuse & Scraping: Koi aapke data ko script likh kar automatic scrape na kar sake.
+
+Server & DB Protection: Server resources ko overload hone ya database crash hone se bachane ke liye.
+
+3. How (Kaise implement karte hain?)
+Node.js aur Express mein sabse popular aur easy package express-rate-limit hai. Yeh memory mein IP aur unke request counts ko track karta hai.
+
+Step 1: Package Install karein
+Bash
+npm install express-rate-limit
+Step 2: Rate Limiter Middleware Define Karein
+Aap global level par ya specific routes (jaise login/register) par isko laga sakte hain.
+
+JavaScript
+const rateLimit = require('express-rate-limit');
+
+// Ek general limiter banate hain
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Har IP se 15 minutes mein maximum 100 requests allowed hain
+    message: {
+        success: false,
+        message: 'Bahut zyada requests aa gayi hain is IP se, kripya 15 minutes baad try karein.'
+    },
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+module.exports = limiter;
+4. Practice (Routes par kaise apply karein?)
+Ab is limiter ko apne Express app mein integrate karke dekhte hain. 
+Aap isko poori app par global apply kar sakte hain ya sirf sensitive routes (jaise login ya OTP verification) par.
+
+A. Global Rate Limiter (Poori App ke liye)
+JavaScript
+const express = require('express');
+const limiter = require('./middleware/rateLimiter');
+
+const app = express();
+
+// Sabhi routes par rate limiter apply kar diya
+app.use(limiter);
+
+app.get('/api/data', (req, res) => {
+    res.json({ message: 'Aapko data mil gaya!' });
+});
+B. Specific Route Rate Limiter (Login/Register ke liye - Recommended)
+Login ya OTP routes par strict limit honi chahiye taaki brute-force attack na ho sake:
+
+JavaScript
+const rateLimit = require('express-rate-limit');
+
+const loginLimiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 5, // Sirf 5 galat attempts allowed
+    message: {
+        success: false,
+        message: 'Aapne 5 baar galat try kiya hai. 10 minutes baad koshish karein.'
+    }
+});
+
+// Route par middleware pass kar diya
+app.post('/api/v1/users/login', loginLimiter, authController.loginUser);
+5. Practical (Production Best Practices)
+Real-world production environments mein kuch advanced baaton ka dhyan rakhna padta hai:
+
+Memory Store vs Redis Store: By default, express-rate-limit server ki RAM (Memory) mein data store karta hai.
+Agar aapka backend multiple servers (Cluster/Cloud instances) par chal raha hai, toh memory store fail ho jayega kyunki har server ka apna RAM hoga.
+Production mein Redis database ka use kiya jata hai (rate-limit-redis package ke sath) taaki sabhi servers centralized track rakh sakein.
+
+Proxy/Load Balancer Handling (app.set('trust proxy', 1)): Agar aapka app Nginx, Heroku, ya Render ke peeche chal raha hai,
+toh Express ko batana padta hai ki client ka asli IP address kahan se read karna hai, warna sabhi users ka IP ek hi (proxy ka IP) dikhega aur sabhi block ho jayenge.
