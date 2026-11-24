@@ -6,7 +6,8 @@ Client ── Request ──> [ Checkpost / Middleware ] ──> Server Handler 
 🤔 Why Middleware? (Zarurat kyun hai?)
 Why: Agar Middleware nahi hoga, toh aapko har ek route function ke andar dublicate aur faltu code baar-baar likhna padega.
 
-DRY Principle (Don't Repeat Yourself): Har route mein if (!name || !role) validation ya token verify karne ka code 10 baar likhne ki jagah, 1 middleware banao aur route ke beech mein laga do.
+DRY Principle (Don't Repeat Yourself): Har route mein if (!name || !role) validation ya token verify karne ka code 10 baar likhne ki jagah, 
+1 middleware banao aur route ke beech mein laga do.
 
 Security Check: Koi bina Login kiye sensitive data na dekh paye (Unauthorized request ko raste mein hi rok do).
 
@@ -61,7 +62,9 @@ Agar next() call karna bhool gaye aur response bhi nahi diya, toh request hang (
 Problem -> ha smjh aa gya kitne type ke middleware hote hai and konsa kb kaha use krna hai yeh kese pata chlega yaar mujhe ?
 
 
-Pure Express ecosystem mein 5 main types ke middlewares hote hain.Aapko kab aur kaun sa use karna hai, iski ek simple Decision Trick batata hoon.🎭 5 Types of Middlewares (What, Why, How)1. Built-in MiddlewaresWHAT: Express ke andar pehle se bane-banaye aate hain. Unhe create nahi karna padta, bas activate karna hota hai.WHY: Client jo data bhejta hai (JSON ya Form Data), Express use by-default nahi samajhta. Unhe parse karne ke liye.HOW & KAB USE KAREIN:Rule: Har Project ke bilkul top par server.js mein initialize kar do.JavaScriptapp.use(express.json()); // JSON data padhne ke liye
+Pure Express ecosystem mein 5 main types ke middlewares hote hain.Aapko kab aur kaun sa use karna hai, iski ek simple Decision Trick batata hoon.🎭 5 Types of Middlewares (What, Why, How)
+1. Built-in MiddlewaresWHAT: Express ke andar pehle se bane-banaye aate hain. Unhe create nahi karna padta, bas activate karna hota hai.WHY: Client jo data bhejta hai (JSON ya Form Data),
+Express use by-default nahi samajhta. Unhe parse karne ke liye.HOW & KAB USE KAREIN:Rule: Har Project ke bilkul top par server.js mein initialize kar do.JavaScriptapp.use(express.json()); // JSON data padhne ke liye
 app.use(express.urlencoded({ extended: true })); // Form data ke liye
 app.use(express.static('public')); // Images/HTML serve karne ke liye
 2. Application-Level (Global) MiddlewaresWHAT: Yeh app ki har single request par chalte hain, chahe route koi bhi ho (/api/users, /api/products, etc.).WHY: Aise kaam jo har request ke liye common hain — jaise Logging, Performance Tracker, CORS, ya Rate Limiting.HOW & KAB USE KAREIN:Rule: Jab aapko sabhi routes par same rule lagana ho. app.use() se lagate hain.JavaScript// Application-level logger
